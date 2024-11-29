@@ -1,0 +1,14 @@
+.main {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+    border: solid 2px black;
+    border-radius: 10px;
+    padding: 1rem;
+}
+.main span {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
