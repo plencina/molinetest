@@ -19,6 +19,7 @@ export const storeTickets = create((set)=> ({
     vendidos: 0,
     ingresos: 0,
     reservas: 0,
+    ingresosPorHora: {},
     fetchData: async () => {
         try {
             const r = await fetch("/api", {
@@ -29,7 +30,12 @@ export const storeTickets = create((set)=> ({
             const response = await r.json()
             console.log(response)
             if (response.ok) {
-                return set((st) => ({ vendidos: response.vendidos, ingresos: response.ingresos, reservas: response.reservas }))
+                return set((st) => ({ 
+                    vendidos: response.vendidos, 
+                    ingresos: response.ingresos, 
+                    reservas: response.reservas,
+                    ingresosPorHora: response.ingresosPorHora
+                }))
             }
             if (error) {
                 console.log(error)

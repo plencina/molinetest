@@ -1,36 +1,34 @@
 "use client"
 import { useEffect, useState } from "react"
 import css from "./css.module.css"
+import { storeTickets } from "@/app/state/state"
 
 
+export default function VerticalChart () {
 
-export default function VerticalChart ({ data }) {
     const [ state, setState ] = useState({})
     const [ unidades, setUnidades ] = useState([])
 
+    const { ingresosPorHora } = storeTickets()
 
-    const cuantificar = (d) => {
-        const nroMaximo = Object.values(d).reduce((max, num)=>Math.max(max, num))
+    const cuantificar = () => {
+        if(Object.keys(ingresosPorHora).length > 1){
+        const nroMaximo = Object.values(ingresosPorHora).reduce((max, num)=>Math.max(max, num))
         const unidad = nroMaximo / 100;
         let valores = [];
-        for(let x of Object.values(d)){
+        for(let x of Object.values(ingresosPorHora)){
             let unidades = x / unidad
             valores.push(unidades)
         }
         setUnidades(valores)
     }
+}
 
 
     useEffect(()=>{
-        setState(data)
-        cuantificar(data)
-    },[data])
-
-    useEffect(()=>{
-        setState(data)
-        cuantificar(data)
-        console.log(data)
-    },[])
+        setState(ingresosPorHora)
+        cuantificar()
+    },[ingresosPorHora])
 
     return <div className={css.container}>
         <p className={css.subtitulo}>Ingreso de personas por horario</p>

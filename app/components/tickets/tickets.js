@@ -8,7 +8,6 @@ export default function Tickets () {
     const { vendidos, ingresos, reservas, fetchData } = storeTickets()
     const dataTickets = async () => {
         await fetchData()
-    opacity: 100;
     }
     useEffect(()=>{
         dataTickets()

@@ -20,7 +20,18 @@ export async function POST ( req ) {
                     ok: true,
                     vendidos: 200000,
                     reservas:10000,
-                    ingresos: 25000 
+                    ingresos: 25000,
+                    ingresosPorHora: {
+                        h20: 15000,
+                        h21: 20000,
+                        h22: 10000,
+                        h23: 1000,
+                        h00: 100,
+                        h01: 50,
+                        h02: 30,
+                        h03: 10,
+                        h04: 1
+                    }
                 })
             } catch (error) {
                 return NextResponse.json({ error })
