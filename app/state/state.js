@@ -9,12 +9,35 @@ puerta1: {
     }
 }
 */
+export const storeNoche = create((set)=> ({
+    noche: 1,
+    setNoche: (noche) => set((st)=>({ noche: noche }))
+}))
+
 
 export const storeTickets = create((set)=> ({
     vendidos: 0,
     ingresos: 0,
-    sumarVendidos: () => set((state)=>({ vendidos: state.vendidos + 1})),
-    sumarIngresos: () => set((state)=>({ ingresos: state.ingresos + 1}))
+    reservas: 0,
+    fetchData: async () => {
+        try {
+            const r = await fetch("/api", {
+                method: "post",
+                body: JSON.stringify({ event: 2 })
+            })
+            /*const { error, response } = await r.json()*/
+            const response = await r.json()
+            console.log(response)
+            if (response.ok) {
+                return set((st) => ({ vendidos: response.vendidos, ingresos: response.ingresos, reservas: response.reservas }))
+            }
+            if (error) {
+                console.log(error)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }))
 
 export const storePuertas = create((set) => ({
@@ -213,14 +236,29 @@ export const storePuertas = create((set) => ({
     handlePuerta: (puerta, evento, valor) => set((state)=>{
         switch (evento) {
             case "estado":  
-                return({ [puerta]: { ...state[puerta], estado: valor }})
+                return({ 
+                    [puerta]: { ...state[puerta], estado: valor }})
                 break;
             case "ticket":
                 if (valor == "correcto") {
-                    return({ [puerta]: { ...state[puerta], tickets: { ...state[puerta].tickets, correctos: state[puerta].tickets.correctos + 1}}})
+                    return({ 
+                        [puerta] : {
+                            id:  state[puerta].id,
+                            estado: state[puerta].estado,
+                            tickets: { 
+                                correctos: state[puerta].tickets.correctos + 1,
+                                rechazados: state[puerta].tickets.rechazados
+                            }}})
                 }
                 if (valor == "rechazado") {
-                    return({ [puerta]: { ...state[puerta], tickets: { ...state[puerta].tickets, rechazados: state[puerta].tickets.rechazados + 1}}})
+                    return({ 
+                        [puerta] : { 
+                            id:  state[puerta].id,
+                            estado: state[puerta].estado,
+                            tickets: { 
+                                rechazados: state[puerta].tickets.rechazados + 1, 
+                                correctos: state[puerta].tickets.correctos 
+                            }}})
                 }
             default:
                 return({})

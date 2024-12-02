@@ -5,8 +5,8 @@ export default function Puerta ({ data }) {
     
     return <div className={css.main}>
         <p className={css.tpuerta}>{data.id}</p>
-         <p>Estado: { data.estado ? "Activa" : "Inactiva" }</p>
-         <p>Ingresos correctos: {data.tickets.correctos}</p>
-         <p>Ingresos rechazados: {data.tickets.rechazados}</p>
+         <p>Estado <span className={data.estado ? css.verde : css.rojo }>{ data.estado ? "Activa" : "Inactiva" }</span></p>
+         <p>Ingresos correctos <span className={css.invert}>{data.tickets.correctos}</span></p>
+         <p>Ingresos rechazados <span className={css.invert}>{data.tickets.rechazados}</span></p>
     </div>
 } 

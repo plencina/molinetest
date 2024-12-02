@@ -1,5 +1,5 @@
 "use client"
-import styles from "./page.module.css"
+import css from "./page.module.css"
 import { redirect } from "next/navigation"
 
 export default function Home() {
@@ -7,6 +7,7 @@ export default function Home() {
   const checkCredentials = async ( form ) => {
     const user = form.get("user")
     const password = form.get("password")
+    
     const res = await fetch("/api", {
       method: "post",
       body: JSON.stringify({ event: 1, data: { user, password }})
@@ -22,7 +23,7 @@ export default function Home() {
   }
 
   return (
-    <div className={styles.page}>
+    <div className={css.main}>
       <form
       action={checkCredentials}
       >

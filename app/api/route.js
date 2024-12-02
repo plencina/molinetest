@@ -12,9 +12,20 @@ export async function POST ( req ) {
                     return NextResponse.json({ login: false })
                 }
             } catch (error) {
-                console.log(error)
                 return NextResponse.json({ error })
             }
+        case 2: {
+            try {
+                return NextResponse.json({
+                    ok: true,
+                    vendidos: 200000,
+                    reservas:10000,
+                    ingresos: 25000 
+                })
+            } catch (error) {
+                return NextResponse.json({ error })
+            }
+        }
         default: return NextResponse.json({ error: "evento default "})
     }
     return NextResponse.json({ rta: true })

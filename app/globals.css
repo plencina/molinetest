@@ -1,6 +1,9 @@
 :root {
-  --blanco: #ffffff;
-  --negro: #171717;
+  --blanco: #F4F1E3;
+  --marron: #50311d;
+  --negroA: #0b090c;
+  --negro: #50311d;
+  font-size: 20px;
 }
 /*
 @media (prefers-color-scheme: dark) {
@@ -14,8 +17,12 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: var(--blanco);
-  color: black;
+  color: white;
+  background: #141E30;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+
 }
 
 body {
