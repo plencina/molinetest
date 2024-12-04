@@ -20,30 +20,12 @@ export const storeTickets = create((set)=> ({
     ingresos: 0,
     reservas: 0,
     ingresosPorHora: {},
-    fetchData: async () => {
-        try {
-            const r = await fetch("/api", {
-                method: "post",
-                body: JSON.stringify({ event: 2 })
-            })
-            /*const { error, response } = await r.json()*/
-            const response = await r.json()
-            console.log(response)
-            if (response.ok) {
-                return set((st) => ({ 
-                    vendidos: response.vendidos, 
-                    ingresos: response.ingresos, 
-                    reservas: response.reservas,
-                    ingresosPorHora: response.ingresosPorHora
-                }))
-            }
-            if (error) {
-                console.log(error)
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    setTickets: ( response ) => set((st) => ({ 
+            vendidos: response.vendidos, 
+            ingresos: response.ingresos, 
+            reservas: response.reservas,
+            ingresosPorHora: response.ingresosPorHora
+        }))
 }))
 
 export const storePuertas = create((set) => ({

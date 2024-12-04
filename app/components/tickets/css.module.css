@@ -14,7 +14,7 @@
     display: flex;
     gap: 1rem;
 }
-.invert {
+.nro {
     border-radius: 2px;
     display: flex;
     justify-content: center;

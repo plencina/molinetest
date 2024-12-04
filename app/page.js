@@ -27,8 +27,9 @@ export default function Home() {
       <form
       action={checkCredentials}
       >
+        <h3>Iniciar sesión</h3>
         <p>Usuario</p>
-        <input type="text" name="user"></input>
+        <input type="text" name="user" ></input>
         <p>Contraseña</p>
         <input type="password" name="password"></input>
         <input type="submit" value="Conectar"/>

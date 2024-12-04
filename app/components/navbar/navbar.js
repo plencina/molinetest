@@ -3,7 +3,7 @@ import { useState } from "react"
 import css from "./css.module.css"
 import { storeNoche } from "@/app/state/state"
 
-export default function Navbar () {
+const Navbar = () => {
     const [ state, setState ] = useState(false)
     const { noche, setNoche } = storeNoche()
     const toggle = () => {
@@ -25,4 +25,8 @@ export default function Navbar () {
             <button onClick={()=>{setNoche(10)}}>Noche 10</button>
             </div>
         </div>
+}
+
+export {
+    Navbar
 }

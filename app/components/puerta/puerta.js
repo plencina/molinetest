@@ -1,7 +1,7 @@
 "use client"
 import css from "./css.module.css"
 
-export default function Puerta ({ data }) {
+const Puerta = ({ data }) => {
     
     return <div className={css.main}>
         <p className={css.tpuerta}>{data.id}</p>
@@ -10,3 +10,7 @@ export default function Puerta ({ data }) {
          <p>Ingresos rechazados <span className={css.invert}>{data.tickets.rechazados}</span></p>
     </div>
 } 
+
+export { 
+    Puerta
+}

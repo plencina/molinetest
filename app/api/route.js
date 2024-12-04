@@ -14,7 +14,7 @@ export async function POST ( req ) {
             } catch (error) {
                 return NextResponse.json({ error })
             }
-        case 2: {
+        case 2: 
             try {
                 return NextResponse.json({
                     ok: true,
@@ -22,25 +22,23 @@ export async function POST ( req ) {
                     reservas:10000,
                     ingresos: 25000,
                     ingresosPorHora: {
-                        h20: 15000,
-                        h21: 20000,
-                        h22: 10000,
-                        h23: 1000,
-                        h00: 100,
-                        h01: 50,
-                        h02: 30,
-                        h03: 10,
-                        h04: 1
+                        "20:00": 25000,
+                        "21:00": 20000,
+                        "22:00": 16000,
+                        "23:00": 13000,
+                        "00:00": 9000,
+                        "01:00": 2000,
+                        "02:00": 1000,
+                        "03:00": 100,
+                        "04:00": 20
                     }
                 })
             } catch (error) {
                 return NextResponse.json({ error })
             }
-        }
+        
         default: return NextResponse.json({ error: "evento default "})
     }
-    return NextResponse.json({ rta: true })
-
 }
 
 export async function GET ( req ) {
